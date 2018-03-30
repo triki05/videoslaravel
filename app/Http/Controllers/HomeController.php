@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Video;
 use App\Http\Requests;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+
 
 class HomeController extends Controller
 {
@@ -25,7 +26,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $videos = DB::table("videos")->orderBy("id","desc")->paginate(5);
+        $videos = Video::orderBy("id","desc")->paginate(5);
         
         return view('home', array(
             "videos" => $videos

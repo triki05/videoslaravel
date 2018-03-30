@@ -14,29 +14,39 @@
                     	</div>
                     @endif
                     
-                    <ul id="video-list">
+                    <div id="video-list">
                     	@foreach($videos as $video)
-                    	<li class="video-item col-md-4 pull-left">
-                    		<div class="data">
+                    	<div class="video-item col-md-12 pull-left panel panel-default">
+                    		<div class="panel-body">
                     			<!-- Imagen del video -->
                     			@if(Storage::disk('images')->has($video->image))
-                    				<div class="video-image-thumb">
+                    				<div class="video-image-thumb col-md-3 pull-left">
                     				
-                    					<div class="col-md-6 col-md-offset-3">
-                    						<img src="{{ url('/miniatura/'.$video->image) }}" width=50px height=50px>
+                    					<div class="video-image-mask">
+                    						<img src="{{ url('/miniatura/'.$video->image) }}" class="video-image">
                     					</div>
                     					
                     				</div>
                     			@endif
                     			<!-- Título del video -->
-                    			<h4>{{$video->title}}</h4>
+                    			<div class="data">
+                    				<h4 class="video-title"><a href="#">{{$video->title}}</a></h4>
+                    				<p>Autor: {{$video->user->name}} {{$video->user->surname}}</p>
+                    				
+                    			</div>
                     			
                     			<!-- Botones de acción -->
+                    			<a href="" class="btn btn-success">Ver</a>
+                    			@if(Auth::check() && Auth::user()->id == $video->user->id)
+                    				<a href="" class="btn btn-warning">Editar</a>
+                    				<a href="" class="btn btn-danger">Eliminar</a>
+                    			@endif
                     			
                     		</div>
-                    	</li>
+                    	</div>
                     	@endforeach
-                    </ul>
+                    	
+                    </div>
                 </div>
             </div>
             
