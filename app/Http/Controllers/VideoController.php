@@ -67,9 +67,25 @@ class VideoController extends Controller
     }
     
     // Método que nos devolverá la imagen
-    public function getImage($fileName){
-        $file = Storage::disk("images")->get($fileName);
+    public function getImage($filename){
+        $file = Storage::disk("images")->get($filename);
         
         return  new Response($file, 200);
+    }
+    
+    // Método que nos devolverá la página con los detalles del video
+    public function getVideoDetail($videoId){
+        $video = Video::find($videoId);
+        
+        return view('video.detail',array(
+            "video" => $video
+        ));
+    }
+    
+    // Método que nos devolverá el video
+    public function getVideo($filename){
+        $file = Storage::disk("videos")->get($filename);
+        
+        return new Response($file,200);
     }
 }

@@ -30,7 +30,7 @@
                     			@endif
                     			<!-- Título del video -->
                     			<div class="data">
-                    				<h4 class="video-title"><a href="#">{{$video->title}}</a></h4>
+                    				<h4 class="video-title"><a href="{{ route('detalles', ['videoId'=>$video->id]) }}">{{$video->title}}</a></h4>
                     				<p>Autor: {{$video->user->name}} {{$video->user->surname}}</p>
                     				
                     			</div>
