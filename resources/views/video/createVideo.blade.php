@@ -29,12 +29,12 @@
 				
 				<div class="form-group">
 					<label for="image">Miniatura</label>
-					<input type="file" class="form-control" id="image" name="image">Tamaño máximo del fichero 5 Mb
+					<input type="file" class="form-control" id="image" name="image">Tamaño máximo del fichero 2 Mb
 				</div>
 				
 				<div class="form-group">
 					<label for="video">Archivo de video</label>
-					<input type="file" class="form-control" id="video" name="video">Tamaño máximo del fichero 20 Mb
+					<input type="file" class="form-control" id="video" name="video">Tamaño máximo del fichero 10 Mb
 				</div>
 				<button type="submit" class="btn btn-success">Crear video</button>
 			</form>

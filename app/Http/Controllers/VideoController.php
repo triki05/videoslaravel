@@ -31,8 +31,8 @@ class VideoController extends Controller
             array(
                 "title" => "required|string|min:10",
                 "description" => "required|string",
-                "image" => "required|mimes:jpg,jpeg,png|max:5120",
-                "video" => "required|mimes:mp4,mpg4,mp4v,avi|max:20480"
+                "image" => "required|mimes:jpg,jpeg,png|max:2048",
+                "video" => "required|mimes:mp4,mpg4,mp4v,avi|max:10240"
             ));
         
         //Guardar el video

@@ -21,3 +21,8 @@
 .video-title a{
 	color: #444;
 }
+
+#video-uploader{
+	font-weight: bold;
+	font-style: italic;
+}

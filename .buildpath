@@ -41,11 +41,6 @@
 			<attribute name="composer" value="vendor"/>
 		</attributes>
 	</buildpathentry>
-	<buildpathentry kind="src" path="vendor/fzaninotto/faker/src/Faker">
-		<attributes>
-			<attribute name="composer" value="vendor"/>
-		</attributes>
-	</buildpathentry>
 	<buildpathentry kind="src" path="vendor/hamcrest/hamcrest-php/hamcrest">
 		<attributes>
 			<attribute name="composer" value="vendor"/>
@@ -62,26 +57,6 @@
 		</attributes>
 	</buildpathentry>
 	<buildpathentry kind="src" path="vendor/jeremeamia/SuperClosure/src">
-		<attributes>
-			<attribute name="composer" value="vendor"/>
-		</attributes>
-	</buildpathentry>
-	<buildpathentry kind="src" path="vendor/laravel/framework/src/Illuminate/Foundation">
-		<attributes>
-			<attribute name="composer" value="vendor"/>
-		</attributes>
-	</buildpathentry>
-	<buildpathentry kind="src" path="vendor/laravel/framework/src/Illuminate/Queue">
-		<attributes>
-			<attribute name="composer" value="vendor"/>
-		</attributes>
-	</buildpathentry>
-	<buildpathentry excluding="Foundation/|Queue/|Support/" kind="src" path="vendor/laravel/framework/src/Illuminate">
-		<attributes>
-			<attribute name="composer" value="vendor"/>
-		</attributes>
-	</buildpathentry>
-	<buildpathentry kind="src" path="vendor/laravel/framework/src/Illuminate/Support">
 		<attributes>
 			<attribute name="composer" value="vendor"/>
 		</attributes>
