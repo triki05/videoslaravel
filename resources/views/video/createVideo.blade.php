@@ -4,7 +4,7 @@
 		<div class="row">
 			<h2>Crear un nuevo video</h2>
 			<hr>
-			<form action="{{ route('saveVideo') }}" method="post" enctype="multipart/form-data" class="col-lg-7">
+			<form action="{{ route('saveVideo') }}" method="post" enctype="multipart/form-data" class="col-md-8 col-md-offset-2">
 				{!! csrf_field() !!}
 				
 				@if($errors->any())
@@ -36,7 +36,7 @@
 					<label for="video">Archivo de video</label>
 					<input type="file" class="form-control" id="video" name="video">Tamaño máximo del fichero 10 Mb
 				</div>
-				<button type="submit" class="btn btn-success">Crear video</button>
+				<button type="submit" class="btn btn-success pull-right">Crear video</button>
 			</form>
 		</div>
 	</div>

@@ -52,3 +52,10 @@ Route::get("/ver-video/{filename}",array(
     "as" => "fileVideo",
     "uses" => "VideoController@getVideo"
 ));
+
+// Rutas de los comentarios
+Route::post('/comentarios',array(
+    'as' => 'comentarios',
+    'middleware' => 'auth',
+    'uses' => 'ComentariosController@store'
+));

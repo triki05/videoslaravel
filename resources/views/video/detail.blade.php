@@ -2,6 +2,11 @@
 
 
 @section('content')
+@if(session('message'))
+	<div class='col-md-10 col-md-offset-1 alert alert-success text-center'>
+		{{ session('message') }}
+	</div>
+@endif
 <div class="col-md-10 col-md-offset-1">
 	<h2 class="text-center">{{$video->title}}</h2>
 	<hr>
@@ -25,6 +30,9 @@
 		</div>
 	
 	<!-- Comentarios -->
+	
+		@include('video.comments')
+		
 	</div>
 </div>
 @endsection	
