@@ -1,6 +1,20 @@
 <h4>Comentarios</h4>
 <hr>
 @if(Auth::check())
+	@if($errors->any())
+		<div class="alert alert-danger">
+			<ul>
+				@foreach($errors->all() as $error)
+					<li>{{$error}}</li>
+				@endforeach
+			</ul>
+		</div>
+	@endif
+	@if(session('message'))
+    	<div class='col-md-10 col-md-offset-1 alert alert-success text-center'>
+    		{{ session('message') }}
+    	</div>
+    @endif
     <form class="col-md-8 col-md-offset-2" method="post" action="{{ route('comentarios') }}">
     	{!! csrf_field() !!}
     	<input type="hidden" name="videoId" value="{{ $video->id }}" required>
