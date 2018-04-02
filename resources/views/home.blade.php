@@ -36,12 +36,13 @@
                     			</div>
                     			
                     			<!-- Botones de acción -->
-                    			<a href="" class="btn btn-success">Ver</a>
-                    			@if(Auth::check() && Auth::user()->id == $video->user->id)
-                    				<a href="" class="btn btn-warning">Editar</a>
-                    				<a href="" class="btn btn-danger">Eliminar</a>
-                    			@endif
-                    			
+                    			<div class="pull-right">
+                        			<a href="" class="btn btn-success">Ver</a>
+                        			@if(Auth::check() && Auth::user()->id == $video->user->id)
+                        				<a href="" class="btn btn-warning">Editar</a>
+                        				<a href="" class="btn btn-danger">Eliminar</a>
+                        			@endif
+                    			</div>
                     		</div>
                     	</div>
                     	@endforeach

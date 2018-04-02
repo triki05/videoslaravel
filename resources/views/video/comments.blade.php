@@ -37,6 +37,31 @@
 					</div>
 					<div class="panel-body">
 						{{ $comentario->body }}
+						@if(Auth::check())
+    						@if(Auth::user()->id == $comentario->userId || Auth::user()->id == $video->userId)
+            					{{-- Botón modal de Bootstrap --}}
+            					<a href="#modalWindow{{$comentario->id}}" role="button" class="btn btn-sm btn-danger pull-right modalButton" data-toggle="modal">Eliminar</a>
+            					{{-- Modal / Ventana / Overlay en HTML --}}
+            					<div id="modalWindow{{$comentario->id}}" class="modal fade">
+            						<div class="modal-dialog">
+            							<div class="modal-content">
+            								<div class="modal-header">
+            									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            									<h4 class="modal-title">¿Estás seguro?</h4>
+            								</div>
+            								<div class="modal-body">
+            									<p>¿Seguro que quieres borrar este comentario?</p>
+            									<p class="text-warning"><small>{{$comentario->body}}</small></p>
+            								</div>
+            								<div class="modal-footer">
+            									<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+            									<button type="button" class="btn btn-danger">Eliminar</button>
+            								</div>
+            							</div>
+            						</div>
+            					</div>
+            				@endif
+            			@endif
 					</div>
 				</div>
 			</div>
