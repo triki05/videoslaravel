@@ -88,4 +88,37 @@ class VideoController extends Controller
         
         return new Response($file,200);
     }
+    
+    //Método para borrar un video
+    public function deleteVideo($videoId){
+        $usuario = Auth::user();
+        $video = Video::find($videoId);
+        $comentarios = Comentario::where('videoId',$videoId)->get();
+        
+        if($usuario && $usuario->id == $video->userId){
+            //Eliminar comentarios
+            if($comentarios && count($comentarios)>0){
+                foreach($comentarios as $comentario){
+                    $comentario->delete();
+                }
+            }
+            
+            //Eliminar imagen y video del disco
+            if(Storage::disk('images')->get($video->image)){
+                Storage::disk('images')->delete($video->image);
+            }
+            if(Storage::disk('videos')->delete($video->video_path)){
+                Storage::disk('videos')->delete($video->video_path);
+            }
+            
+            
+            //Eliminar video de la BBDD
+            if($video){
+                $video->delete();
+            }
+        }
+        return redirect()->route('home')->with(array(
+            'delMessage' => 'Video borrado correctamente',
+        ));
+    }
 }

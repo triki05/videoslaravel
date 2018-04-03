@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Http\Requests;
 use App\Comentario;
+use App\Video;
 
 class ComentariosController extends Controller
 {
@@ -27,5 +28,16 @@ class ComentariosController extends Controller
         return redirect()->route('detalles', [
             'videoId' => $comentario->videoId,
         ])->with(array('message'=>'Comentario publicado correctamente'));
+    }
+    public function delete($comentarioId){
+        $usuario = Auth::user();
+        $comentario = Comentario::find($comentarioId);
+        
+        if($usuario && ($comentario->userId == $usuario->id || $comentario->video->userId == $usuario->id)){
+            $comentario->delete();
+        }
+        return redirect()->route('detalles',[
+            'videoId' => $comentario->videoId,
+        ])->with(array('delMessage'=>'Comentario eliminado correctamente'));
     }
 }

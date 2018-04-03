@@ -15,6 +15,11 @@
     		{{ session('message') }}
     	</div>
     @endif
+    @if(session('delMessage'))
+    	<div class='col-md-10 col-md-offset-1 alert alert-danger text-center'>
+    		{{ session('delMessage') }}
+    	</div>
+    @endif
     <form class="col-md-8 col-md-offset-2" method="post" action="{{ route('comentarios') }}">
     	{!! csrf_field() !!}
     	<input type="hidden" name="videoId" value="{{ $video->id }}" required>
@@ -55,7 +60,7 @@
             								</div>
             								<div class="modal-footer">
             									<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-            									<button type="button" class="btn btn-danger">Eliminar</button>
+            									<a href="{{ route('delComment',['commentId'=>$comentario->id]) }}" type="button"  class="btn btn-danger">Eliminar</a>
             								</div>
             							</div>
             						</div>

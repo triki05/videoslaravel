@@ -13,7 +13,11 @@
                     		{{Session::get('message')}}
                     	</div>
                     @endif
-                    
+                    @if(session('delMessage'))
+                    	<div class="alert alert-danger text-center">
+                    		{{ session('delMessage') }}
+                    	</div>
+                    @endif
                     <div id="video-list">
                     	@foreach($videos as $video)
                     	<div class="video-item col-md-12 pull-left panel panel-default">
@@ -37,10 +41,29 @@
                     			
                     			<!-- Botones de acción -->
                     			<div class="pull-right">
-                        			<a href="" class="btn btn-success">Ver</a>
+                        			<a href="{{ route('detalles', ['videoId'=>$video->id]) }}" class="btn btn-success">Ver</a>
                         			@if(Auth::check() && Auth::user()->id == $video->user->id)
                         				<a href="" class="btn btn-warning">Editar</a>
-                        				<a href="" class="btn btn-danger">Eliminar</a>
+                        				<a href="#modalWindow{{$video->id}}" role="button" class="btn btn-danger pull-right modalButton" data-toggle="modal">Eliminar</a>
+                        				{{-- Modal / Ventana / Overlay en HTML --}}
+                    					<div id="modalWindow{{$video->id}}" class="modal fade">
+                    						<div class="modal-dialog">
+                    							<div class="modal-content">
+                    								<div class="modal-header">
+                    									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    									<h4 class="modal-title">¿Estás seguro?</h4>
+                    								</div>
+                    								<div class="modal-body">
+                    									<p>¿Seguro que quieres borrar este video?</p>
+                    									<p class="text-warning"><small>{{$video->title}}</small></p>
+                    								</div>
+                    								<div class="modal-footer">
+                    									<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    									<a href="{{ route('deleteVideo',['videoId'=>$video->id]) }}" type="button"  class="btn btn-danger">Eliminar</a>
+                    								</div>
+                    							</div>
+                    						</div>
+                    					</div>
                         			@endif
                     			</div>
                     		</div>
