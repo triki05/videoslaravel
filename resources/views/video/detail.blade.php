@@ -17,7 +17,7 @@
 		<div class="panel panel-default video-data col-md-12">
 			<div class="panel-heading">
 				<div class="panel-title text-right">
-					Subido por <span id="video-uploader">{{$video->user->name ." ".$video->user->surname}}</span> {{FormatTime::LongTimeFilter($video->created_at)}}
+					Subido por <span class="strong">{{$video->user->name ." ".$video->user->surname}}</span> {{FormatTime::LongTimeFilter($video->created_at)}}
 				</div>
 			</div>
 			<div class="panel-body">

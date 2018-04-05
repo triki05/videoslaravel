@@ -37,7 +37,7 @@
 				<div class="panel panel-default comment-data">
 					<div class="panel-heading">
 						<div class="panel-title text-right">
-							Publicado por <span>{{$comentario->user->name." ".$comentario->user->surname}}</span> {{ FormatTime::LongTimeFilter($comentario->created_at) }}
+							Publicado por <span class="strong">{{$comentario->user->name." ".$comentario->user->surname}}</span> {{ FormatTime::LongTimeFilter($comentario->created_at) }}
 						</div>
 					</div>
 					<div class="panel-body">

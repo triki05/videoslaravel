@@ -43,7 +43,7 @@
                     			<div class="pull-right">
                         			<a href="{{ route('detalles', ['videoId'=>$video->id]) }}" class="btn btn-success">Ver</a>
                         			@if(Auth::check() && Auth::user()->id == $video->user->id)
-                        				<a href="" class="btn btn-warning">Editar</a>
+                        				<a href="{{ route('editVideo', ['videoId' => $video->id]) }}" class="btn btn-warning">Editar</a>
                         				<a href="#modalWindow{{$video->id}}" role="button" class="btn btn-danger pull-right modalButton" data-toggle="modal">Eliminar</a>
                         				{{-- Modal / Ventana / Overlay en HTML --}}
                     					<div id="modalWindow{{$video->id}}" class="modal fade">

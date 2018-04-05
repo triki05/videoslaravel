@@ -116,9 +116,68 @@ class VideoController extends Controller
             if($video){
                 $video->delete();
             }
+            $mensaje = "Video borrado correctamente";
+        }else{
+            $mensaje = "El video no se ha podido borrar";
         }
         return redirect()->route('home')->with(array(
-            'delMessage' => 'Video borrado correctamente',
+            'delMessage' => $mensaje,
+        ));
+    }
+    
+    // Método para modificar videos
+    public function edit($videoId){
+        $video = Video::findOrFail($videoId);
+        $usuario = Auth::user();
+        if($usuario && $usuario->id == $video->userId){
+            return view('video.edit', array(
+                'video' => $video
+            ));
+        }else{
+            return view('errors.503');
+        }
+    }
+    
+    // Método para actualizar los videos
+    public function update($videoId, Request $request){
+        $validate = $this->validate($request, array(
+            "title" => "required|string|min:10",
+            "description" => "required|string",
+            "image" => "mimes:jpg,jpeg,png|max:2048",
+            "video" => "mimes:mp4,mpg4,mp4v,avi|max:10240"
+        ));
+        
+        $video = Video::findOrFail($videoId);
+        $usuario = Auth::user();
+        
+        $video->userId = $usuario->id;
+        $video->title = $request->input('title');
+        $video->description = $request->input('description');
+        
+        $imagen = $request->file('image');
+        if($imagen){
+            $imagen_path = date('ynjHi').$imagen->getClientOriginalName();
+            if(Storage::disk('images')->has($video->image)){
+                Storage::disk('images')->delete($video->image);
+            }
+            Storage::disk('images')->put($imagen_path, File::get($imagen));
+            $video->image = $imagen_path;
+        }
+        
+        $video_file = $request->file("video");
+        if($video_file){
+            $videoPath = date('ynjHi').$video_file->getClientOriginalName();
+            if(Storage::disk('videos')->has($video->video_path)){
+                Storage::disk('videos')->delete($video->video_path);
+            }
+            Storage::disk('videos')->put($videoPath, File::get($video_file));
+            $video->video_path = $videoPath;
+        }
+        
+        $video->update();
+        
+        return redirect()->route('home')->with(array(
+            'message' => 'El video se ha actualizado correctamente'
         ));
     }
 }
