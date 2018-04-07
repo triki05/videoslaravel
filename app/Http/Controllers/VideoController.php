@@ -180,4 +180,20 @@ class VideoController extends Controller
             'message' => 'El video se ha actualizado correctamente'
         ));
     }
+    
+    // Método para realizar las búsquedas
+    public function search($busqueda = null){
+        if(is_null($busqueda) && \Request::get('search')){
+            $busqueda = \Request::get('search');
+            
+            return redirect()->route('search',['busqueda'=>$busqueda]);
+        }
+        
+        $resultado = Video::where('title','LIKE','%'.$busqueda.'%')->paginate(5);
+        
+        return view('video.search', array(
+            'videos' => $resultado,
+            'busqueda' => $busqueda
+        ));
+    }
 }

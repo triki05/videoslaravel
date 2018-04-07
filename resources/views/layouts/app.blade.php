@@ -51,7 +51,7 @@
                     <li><a href="{{ url('/home') }}">Inicio</a></li>
                 </ul>
 
-				<form class="navbar-form navbar-left" role="search" action="">
+				<form class="navbar-form navbar-left" role="search" action="{{ url('search') }}">
 					<div class="form-group">
 						<input type="text" class="form-control" placeholder="¿Qué quieres ver?" name="search">
 					</div>
@@ -88,7 +88,7 @@
 
 	<footer class="col-md-10 col-md-offset-1 text-center">
 		<hr>
-		MiTube&copy; 2018. Creada por Alberto Doñoro
+		MiHub&copy; 2018. Creada por Alberto Doñoro
 	</footer>
     <!-- JavaScripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>

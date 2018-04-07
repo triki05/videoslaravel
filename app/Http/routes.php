@@ -71,6 +71,11 @@ Route::post('/update-video/{videoId}',array(
     'uses' => 'VideoController@update'
 ));
 
+Route::get('/search/{busqueda?}', array(
+    'as' => "search",
+    'uses' => 'VideoController@search'
+));
+
 // Rutas de los comentarios
 Route::post('/comentarios',array(
     'as' => 'comentarios',
