@@ -182,14 +182,36 @@ class VideoController extends Controller
     }
     
     // Método para realizar las búsquedas
-    public function search($busqueda = null){
+    public function search($busqueda = null, $order = null){
         if(is_null($busqueda) && \Request::get('search')){
             $busqueda = \Request::get('search');
             
             return redirect()->route('search',['busqueda'=>$busqueda]);
         }
         
-        $resultado = Video::where('title','LIKE','%'.$busqueda.'%')->paginate(5);
+        if(is_null($order) && \Request::get('filter') && !is_null($busqueda) ){
+            $order = \Request::get('filter');
+            return redirect()->route('search',['busqueda'=>$busqueda, 'order' =>$order]);
+        }
+        $columna = 'id';
+        $direccion = 'asc';
+        if(!is_null($order)){
+            if($order == 'new'){
+                $columna='id';
+                $direccion='desc';
+            }
+            if($order == 'old'){
+                $columna='id';
+                $direccion='asc';
+            }
+            if($order == 'alphabetic'){
+                $columna = 'title';
+                $direccion = 'asc';
+            }
+        }
+        
+        
+        $resultado = Video::where('title','LIKE','%'.$busqueda.'%')->orderBy($columna,$direccion)->paginate(5);
         
         return view('video.search', array(
             'videos' => $resultado,

@@ -16,7 +16,7 @@
     			<!-- Título del video -->
     			<div class="data">
     				<h4 class="video-title"><a href="{{ route('detalles', ['videoId'=>$video->id]) }}">{{$video->title}}</a></h4>
-    				<p>Autor: {{$video->user->name}} {{$video->user->surname}}</p>
+    				<p>Subido por <a href="{{route('channel',['userId' => $video->user->id])}}" class="video-author">{{$video->user->name}} {{$video->user->surname}}</a></p>
     				
     			</div>
     			

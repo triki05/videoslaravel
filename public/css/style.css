@@ -22,6 +22,16 @@
 	color: #444;
 }
 
+.video-author{
+	color: #444;
+}
+
+.video-author:hover{
+	color: black;
+	font-size: 1.1em;
+	text-decoration: none;
+}
+
 .strong{
 	font-weight: bold;
 	font-style: italic;
@@ -29,4 +39,10 @@
 
 #form-order{
 	padding-bottom: 15px;
+}
+
+#video-player{
+	width: 600px;
+	margin-left: 50%;
+	transform: translateX(-50%);
 }

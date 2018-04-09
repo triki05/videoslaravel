@@ -14,13 +14,13 @@
 use App\Video;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
+/*Route::get('/', function () {
    return view('welcome');
-});
+});*/
 
 Route::auth();
 
-Route::get('/home', array(
+Route::get('/', array(
     "as" => "home",
     "uses" => 'HomeController@index'
 ));
@@ -71,10 +71,12 @@ Route::post('/update-video/{videoId}',array(
     'uses' => 'VideoController@update'
 ));
 
-Route::get('/search/{busqueda?}', array(
+Route::get('/search/{busqueda?}/{order?}', array(
     'as' => "search",
     'uses' => 'VideoController@search'
 ));
+
+
 
 // Rutas de los comentarios
 Route::post('/comentarios',array(
@@ -88,3 +90,14 @@ Route::get('/delComment/{commentId}',array(
     'middleware' => 'auth',
     'uses' => 'ComentariosController@delete'
 ));
+
+// Rutas de los Usuarios
+Route::get('/canal/{userId}',array(
+    'as' => "channel",
+    'uses' => 'UserController@channel'
+));
+
+// Caché
+Route::get('/clear-cache', function(){
+    $code = \Artisan::call('cache:clear');
+});
